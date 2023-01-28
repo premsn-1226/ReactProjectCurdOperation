@@ -1,7 +1,7 @@
 export default class ApiService {
   static baseUrl = `http://localhost:8081/api/v1/student/`;
 
-  static async api(url, options ) {
+  static async api(url, options) {
     return await fetch(url, { method: options });
   }
 
@@ -13,11 +13,18 @@ export default class ApiService {
 
   static addStudent(name, email, department, phone, age) {
     return ApiService.api(
-      `${this.baseUrl}saveStudent?name=${name}&email=${email}&department=${department}&phone=${phone}&age=${age}`, "POST"
+      `${this.baseUrl}saveStudent?name=${name}&email=${email}&department=${department}&phone=${phone}&age=${age}`,
+      "POST"
     ).then((response) => response.json());
   }
 
   static deleteStudent(id) {
     ApiService.api(`${this.baseUrl}deleteStudent?id=${id}`, "DELETE");
+  }
+
+  static getStudentById(id) {
+    return ApiService.api(`${this.baseUrl}getStudentById?id=${id}`).then(
+      (response) => response.json()
+    );
   }
 }
