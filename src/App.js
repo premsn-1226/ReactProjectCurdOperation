@@ -26,15 +26,6 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          {/*<Image
-            logo={logo}
-            className="App-logo"
-            alt="logo"
-            classNameForLink="App-link"
-            link="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-  />*/}
           <FirstComponent user={user} Name={formatName(user)} />
         </header>
         <Routes>
@@ -46,7 +37,12 @@ function App() {
           <Route
             exact
             path="/addStudent"
-            element={<AddStudent headingData={headingData} />}
+            element={<AddStudent headingData={headingData} type="add" />}
+          ></Route>
+          <Route
+            exact
+            path="/updateStudent"
+            element={<AddStudent headingData={headingData} type="update" />}
           ></Route>
         </Routes>
       </div>
