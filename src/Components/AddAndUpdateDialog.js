@@ -30,7 +30,6 @@ export default function AddAndUpdateDialog(props) {
   });
 
   useEffect(() => {
-    console.log(student);
     setRequired(false);
     if (props.type === "Update") {
       setStudent(props.data);
@@ -71,6 +70,7 @@ export default function AddAndUpdateDialog(props) {
       setStudent({});
       setRequired(false);
       props.onHide();
+      props.onChangeStatus(st);
     } else {
       setRequired(true);
     }

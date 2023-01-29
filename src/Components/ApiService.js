@@ -19,7 +19,10 @@ export default class ApiService {
   }
 
   static deleteStudent(id) {
-    ApiService.api(`${this.baseUrl}deleteStudent?id=${id}`, "DELETE");
+    return ApiService.api(
+      `${this.baseUrl}deleteStudent?id=${id}`,
+      "DELETE"
+    ).then((response) => response.json());
   }
 
   static getStudentById(id) {

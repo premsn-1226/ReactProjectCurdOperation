@@ -3,10 +3,12 @@ import Button from "react-bootstrap/esm/Button";
 import Modal from "react-bootstrap/Modal";
 import ApiService from "./ApiService";
 export default function DeleteDialog(props) {
-    const handleDelete = (e, id) => {
-        ApiService.deleteStudent(id);
-        props.onHide();
-    };
+  const handleDelete = async (e, id) => {
+    const st = await ApiService.deleteStudent(id);
+    console.log(st);
+    props.onChangeStatus(st);
+    props.onHide();
+  };
   return (
     <Modal
       {...props}
@@ -14,7 +16,7 @@ export default function DeleteDialog(props) {
       show={props.show}
     >
       <Modal.Header closeButton style={{ backgroundColor: "red" }}>
-        <Modal.Title style={{ color: "white" }}>Delete Student</Modal.Title>
+        <Modal.Title style={{ color: "white" }} className="control-label">Delete Student</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ color: "red", fontSize: "20px" }}>
         Are you sure!! do you want to delete this id : {props.id}
@@ -27,11 +29,7 @@ export default function DeleteDialog(props) {
         >
           DELETE
         </Button>
-        <Button
-          variant="dark"
-          className="control-label"
-          onClick={props.onHide}
-        >
+        <Button variant="dark" className="control-label" onClick={props.onHide}>
           CANCEL
         </Button>
       </Modal.Footer>
